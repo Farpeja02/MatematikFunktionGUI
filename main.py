@@ -4,6 +4,8 @@ from tkinter.ttk import *
 from SaveFile import Save
 from MFfile import listWindowClass
 
+
+
 class mainWindow:
     def __init__(self):
         # creating tkinter window
@@ -32,8 +34,9 @@ class mainWindow:
         self.root.destroy()
         print("hej")
 
+
+
+
 if __name__ == '__main__':
 
     main = mainWindow()
-
-
