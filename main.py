@@ -12,18 +12,39 @@ class mainWindow:
         self.root = Tk()
         self.root.protocol('WM_DELETE_WINDOW',self.callback)
 
-        velkomst = Label(self.root, text="Velkommen til fodboldtur GUI")
+        self.hasItBeenSaved = 0
+
+        velkomst = Label(self.root, text="Velkommen til Matematisk funktions maskinen")
         velkomst.pack(pady=10)
+
+        guide = Label(self.root, text="Skriv en funktion her og få den vist. Eksempel: y = x + 5")
+        guide.pack(pady=10)
 
 
         self.add = Entry(self.root)
         self.add.pack()
 
-        self.runButton = Button(self.root, text="Run", command=lambda: listWindowClass(self,self.add.get()))
+        self.runButton = Button(self.root, text="Run", command=lambda: listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get()))
         self.runButton.pack(padx = 20, pady = 10,side=LEFT)
 
         self.saveButton = Button(self.root, text="Save", command= Save)
         self.saveButton.pack(padx = 20, pady = 10,side=LEFT)
+
+        limitValA = Label(self.root, text="Limit Value A, Default is -100")
+        limitValA.pack(pady=10)
+        self.addLimitValA = Entry(self.root)
+        self.addLimitValA.pack()
+
+        limitValB = Label(self.root, text="Limit Value B, Default is 100")
+        limitValB.pack(pady=10)
+        self.addLimitValB = Entry(self.root)
+        self.addLimitValB.pack()
+
+
+        interval = Label(self.root, text="Choose your Interval, Default is 1")
+        interval.pack(pady=10)
+        self.interval = Entry(self.root)
+        self.interval.pack()
 
 
         # infinite loop

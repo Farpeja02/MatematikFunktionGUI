@@ -8,17 +8,36 @@ import matplotlib.pyplot as plt
 
 
 class listWindowClass:
-    def __init__(self, master,input):
+    def __init__(self, master,input,limitA,limitB,interval):
         self.master = master #reference til main window objektet
         self.listWindow = Toplevel(self.master.root)
         self.listWindow.title("List Window")
         self.listWindow.geometry("500x500")
         self.input = input
+        self.limitA = limitA
+        if self.limitA == "":
+            self.limitA = -100
+
+
+        self.limitB = limitB
+        if self.limitB == "":
+            self.limitB = 100
+
+
+        self.interval = interval
+        if self.interval == "":
+            self.interval = 1
+
+
+
+
         Label(self.listWindow, text="Liste over indbetalinger.. eller.. noget der ligner en cylinder").pack()
 
 
 
         self.plot()
+
+
 
     def plot(self):
         fig, ax = plt.subplots()
@@ -32,7 +51,7 @@ class listWindowClass:
 
         f = sym.lambdify([x], expr)
 
-        X = np.arange(-200, 100, 1)
+        X = np.arange(int(self.limitA), int(self.limitB), int(self.interval))
         Y = f(X)
         ax.plot(X, Y)
 
@@ -52,6 +71,9 @@ class listWindowClass:
 
         # placing the toolbar on the Tkinter window
         canvas.get_tk_widget().pack()
+
+
+
 
 
 
