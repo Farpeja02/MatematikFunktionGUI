@@ -20,15 +20,25 @@ class mainWindow:
         guide = Label(self.root, text="Skriv en funktion her og få den vist. Eksempel: y = x + 5")
         guide.pack(pady=10)
 
-
         self.add = Entry(self.root)
         self.add.pack()
 
-        self.runButton = Button(self.root, text="Run", command=lambda: listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get()))
+        evalX = Label(self.root, text="Evaualte from specefic x value, if it's left empty it will be ignored.")
+        evalX.pack(pady=10)
+        self.addEvalX = Entry(self.root)
+        self.addEvalX.pack()
+
+
+
+
+        self.runButton = Button(self.root, text="Run", command=lambda: listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get(),self.addEvalX.get()))
         self.runButton.pack(padx = 20, pady = 10,side=LEFT)
 
         self.saveButton = Button(self.root, text="Save", command= Save)
         self.saveButton.pack(padx = 20, pady = 10,side=LEFT)
+
+
+
 
         limitValA = Label(self.root, text="Limit Value A, Default is -100")
         limitValA.pack(pady=10)
@@ -42,9 +52,9 @@ class mainWindow:
 
 
         interval = Label(self.root, text="Choose your Interval, Default is 1")
-        interval.pack(pady=10)
+        interval.pack(pady=5)
         self.interval = Entry(self.root)
-        self.interval.pack()
+        self.interval.pack(pady=5, padx =5)
 
 
         # infinite loop
