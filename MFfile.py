@@ -5,7 +5,7 @@ from tkinter.ttk import *
 from tkinter import *
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,NavigationToolbar2Tk)
 import matplotlib.pyplot as plt
-from tkinter.filedialog import asksaveasfile
+#from tkinter.filedialog import asksaveasfile
 
 class listWindowClass:
     def __init__(self, master,input,limitA,limitB,interval,evalX):
@@ -15,7 +15,7 @@ class listWindowClass:
         self.listWindow.geometry("500x500")
         self.input = input
         self.limitA = limitA
-        self.evalX = evalX
+        self.evalX = ''
         if self.limitA == "":
             self.limitA = -100
 
@@ -34,9 +34,9 @@ class listWindowClass:
 
         Label(self.listWindow, text="Liste over indbetalinger.. eller.. noget der ligner en cylinder").pack()
 
-        if self.evalX == '':
+        if self.evalX != '':
             x  = self.evalX
-            self.input = self.input.split('=')[1]
+            #self.input = self.input.split('=')[1]
 
             playerInputEval = eval(self.input)
             Label(self.listWindow, text=f"The chosen X value is: {playerInputEval}").pack()
@@ -83,7 +83,7 @@ class listWindowClass:
         #fig.savefig(file)
 
         # gemmer på desktop
-        fig.savefig('/users/emiliemunklarsen/Desktop/graph.png')
+        #fig.savefig('/users/emiliemunklarsen/Desktop/graph.png')
 
 
 

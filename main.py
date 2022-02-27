@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter.ttk import *
 from SaveFile import Save
 from MFfile import listWindowClass
-
+from tkinter import messagebox
 
 
 class mainWindow:
@@ -13,6 +13,9 @@ class mainWindow:
         self.root.protocol('WM_DELETE_WINDOW',self.callback)
 
         self.hasItBeenSaved = 0
+
+
+
 
         velkomst = Label(self.root, text="Velkommen til Matematisk funktions maskinen")
         velkomst.pack(pady=10)
@@ -31,10 +34,10 @@ class mainWindow:
 
 
 
-        self.runButton = Button(self.root, text="Run", command=lambda: listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get(),self.addEvalX.get()))
+        self.runButton = Button(self.root, text="Run", command=lambda: self.saveNo and listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get(),self.addEvalX.get()))
         self.runButton.pack(padx = 20, pady = 10,side=LEFT)
 
-        self.saveButton = Button(self.root, text="Save", command= Save)
+        self.saveButton = Button(self.root, text="Save", command= Save and self.saveYes)
         self.saveButton.pack(padx = 20, pady = 10,side=LEFT)
 
 
@@ -62,8 +65,32 @@ class mainWindow:
 
 
     def callback(self):
-        self.root.destroy()
+
         print("hej")
+
+        if self.hasItBeenSaved == 0:
+            if messagebox.askyesno("Warning: You're about to close without saving.",
+                                                "Would you like to save before closing the program?"):
+                self.root.destroy()
+
+            else:
+                pass
+
+        if self.hasItBeenSaved == 1:
+            self.root.destroy()
+
+    def saveYes(self):
+        self.hasItBeenSaved = 1
+        print(self.hasItBeenSaved)
+
+    def saveNo(self):
+        self.hasItBeenSaved = 0
+        print(self.hasItBeenSaved)
+
+
+
+
+
 
 
 
