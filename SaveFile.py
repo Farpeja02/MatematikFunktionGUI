@@ -1,3 +1,7 @@
+from tkinter.filedialog import asksaveasfile
+from MFfile import listWindowClass
+
 
 def Save():
-    pass
+    # åbner save vindue
+    file = asksaveasfile(initialfile='Untitled.png', defaultextension=".png", filetypes=[("All Files", "*.*")])

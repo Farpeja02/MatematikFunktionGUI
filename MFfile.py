@@ -5,7 +5,7 @@ from tkinter.ttk import *
 from tkinter import *
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,NavigationToolbar2Tk)
 import matplotlib.pyplot as plt
-
+from tkinter.filedialog import asksaveasfile
 
 class listWindowClass:
     def __init__(self, master,input,limitA,limitB,interval):
@@ -36,7 +36,6 @@ class listWindowClass:
 
 
         self.plot()
-
 
 
     def plot(self):
@@ -71,6 +70,12 @@ class listWindowClass:
 
         # placing the toolbar on the Tkinter window
         canvas.get_tk_widget().pack()
+        
+        #file = asksaveasfile(initialfile='Untitled.png', defaultextension=".png", filetypes=[("All Files", "*.*")])
+        #fig.savefig(file)
+
+        # gemmer på desktop
+        fig.savefig('/users/emiliemunklarsen/Desktop/graph.png')
 
 
 
