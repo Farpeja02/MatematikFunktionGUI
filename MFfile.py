@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 
 
 class listWindowClass:
-    def __init__(self, master,input,limitA,limitB,interval):
+    def __init__(self, master,input,limitA,limitB,interval,evalX):
         self.master = master #reference til main window objektet
         self.listWindow = Toplevel(self.master.root)
         self.listWindow.title("List Window")
         self.listWindow.geometry("500x500")
         self.input = input
         self.limitA = limitA
+        self.evalX = evalX
         if self.limitA == "":
             self.limitA = -100
 
@@ -33,6 +34,13 @@ class listWindowClass:
 
         Label(self.listWindow, text="Liste over indbetalinger.. eller.. noget der ligner en cylinder").pack()
 
+        if self.evalX == '':
+            x  = self.evalX
+            self.input = self.input.split('=')[1]
+
+            playerInputEval = eval(self.input)
+            Label(self.listWindow, text=f"The chosen X value is: {playerInputEval}").pack()
+            print(playerInputEval)
 
 
         self.plot()
