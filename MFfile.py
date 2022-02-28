@@ -5,7 +5,8 @@ from tkinter.ttk import *
 from tkinter import *
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,NavigationToolbar2Tk)
 import matplotlib.pyplot as plt
-#from tkinter.filedialog import asksaveasfile
+from tkinter.filedialog import asksaveasfile
+
 
 class listWindowClass:
     def __init__(self, master,input,limitA,limitB,interval,evalX):
@@ -15,7 +16,7 @@ class listWindowClass:
         self.listWindow.geometry("500x500")
         self.input = input
         self.limitA = limitA
-        self.evalX = ''
+        self.evalX = evalX
         if self.limitA == "":
             self.limitA = -100
 
@@ -29,42 +30,39 @@ class listWindowClass:
         if self.interval == "":
             self.interval = 1
 
-
-
+        self.input = self.input.split('=')[1]
 
         Label(self.listWindow, text="Liste over indbetalinger.. eller.. noget der ligner en cylinder").pack()
-
-        if self.evalX != '':
-            x  = self.evalX
-            #self.input = self.input.split('=')[1]
-
-            playerInputEval = eval(self.input)
-            Label(self.listWindow, text=f"The chosen X value is: {playerInputEval}").pack()
-            print(playerInputEval)
 
 
         self.plot()
 
 
+        self.saveButton = Button(self.listWindow, text="Save", command= self.save)
+        self.saveButton.pack(padx = 20, pady = 10,side=LEFT)
+
+        self.evaluator()
+
     def plot(self):
-        fig, ax = plt.subplots()
+        self.fig, ax = plt.subplots()
+        self.master.saveNo()
 
 
-        self.input = self.input.split('=')[1]
+
 
         x, y = sym.symbols('x y')
 
         expr = parse_expr(self.input)
 
-        f = sym.lambdify([x], expr)
+        self.f = sym.lambdify([x], expr)
 
         X = np.arange(int(self.limitA), int(self.limitB), int(self.interval))
-        Y = f(X)
+        Y = self.f(X)
         ax.plot(X, Y)
 
 
 
-        canvas = FigureCanvasTkAgg(fig,
+        canvas = FigureCanvasTkAgg(self.fig,
                                    master=self.listWindow)
         canvas.draw()
 
@@ -78,12 +76,21 @@ class listWindowClass:
 
         # placing the toolbar on the Tkinter window
         canvas.get_tk_widget().pack()
-        
-        #file = asksaveasfile(initialfile='Untitled.png', defaultextension=".png", filetypes=[("All Files", "*.*")])
-        #fig.savefig(file)
 
-        # gemmer på desktop
-        #fig.savefig('/users/emiliemunklarsen/Desktop/graph.png')
+    def evaluator(self):
+        if self.evalX != '':
+            x  = int(self.evalX)
+
+            y=self.f(x)
+            Label(self.listWindow, text=f"The chosen X value is: {y}").pack()
+        
+    def save(self):
+        self.master.saveYes()
+        filename = asksaveasfile(initialfile='Untitled.png', defaultextension=".png", filetypes=[("All Files", "*.*")])
+        print(filename.name)
+        self.fig.savefig(filename.name)
+
+
 
 
 

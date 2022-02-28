@@ -1,7 +1,7 @@
 # importing tkinter module
 from tkinter import *
 from tkinter.ttk import *
-from SaveFile import Save
+#from SaveFile import Save
 from MFfile import listWindowClass
 from tkinter import messagebox
 
@@ -34,11 +34,10 @@ class mainWindow:
 
 
 
-        self.runButton = Button(self.root, text="Run", command=lambda: self.saveNo and listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get(),self.addEvalX.get()))
+        self.runButton = Button(self.root, text="Run", command=lambda: listWindowClass(self,self.add.get(),self.addLimitValA.get(),self.addLimitValB.get(),self.interval.get(),self.addEvalX.get()))
         self.runButton.pack(padx = 20, pady = 10,side=LEFT)
 
-        self.saveButton = Button(self.root, text="Save", command= Save and self.saveYes)
-        self.saveButton.pack(padx = 20, pady = 10,side=LEFT)
+
 
 
 
