@@ -8,12 +8,12 @@ import matplotlib.pyplot as plt
 from tkinter.filedialog import asksaveasfile
 
 
-class listWindowClass:
+class MFWindowClass:
     def __init__(self, master,input,limitA,limitB,interval,evalX):
         self.master = master #reference til main window objektet
-        self.listWindow = Toplevel(self.master.root)
-        self.listWindow.title("List Window")
-        self.listWindow.geometry("500x500")
+        self.MFWindow = Toplevel(self.master.root)
+        self.MFWindow.title("Graph of the given function")
+        self.MFWindow.geometry("500x500")
         self.input = input
         self.limitA = limitA
         self.evalX = evalX
@@ -32,13 +32,13 @@ class listWindowClass:
 
         self.input = self.input.split('=')[1]
 
-        Label(self.listWindow, text="Her er din graf :)").pack()
+        Label(self.MFWindow, text="Here is your graph :)").pack()
 
 
         self.plot()
 
 
-        self.saveButton = Button(self.listWindow, text="Save", command= self.save)
+        self.saveButton = Button(self.MFWindow, text="Save", command= self.save)
         self.saveButton.pack(padx = 20, pady = 10,side=LEFT)
 
         self.evaluator()
@@ -63,7 +63,7 @@ class listWindowClass:
 
 
         canvas = FigureCanvasTkAgg(self.fig,
-                                   master=self.listWindow)
+                                   master=self.MFWindow)
         canvas.draw()
 
         # placing the canvas on the Tkinter window
@@ -71,7 +71,7 @@ class listWindowClass:
 
         # creating the Matplotlib toolbar
         toolbar = NavigationToolbar2Tk(canvas,
-                                       self.listWindow)
+                                       self.MFWindow)
         toolbar.update()
 
         # placing the toolbar on the Tkinter window
@@ -82,7 +82,7 @@ class listWindowClass:
             x  = int(self.evalX)
 
             y=self.f(x)
-            Label(self.listWindow, text=f"The chosen X value is: {y}").pack()
+            Label(self.MFWindow, text=f"The chosen X value gives this Y value: {y}").pack(pady = 10)
         
     def save(self):
         self.master.saveYes()

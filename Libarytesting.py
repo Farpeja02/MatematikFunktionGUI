@@ -1,3 +1,5 @@
+#This file was used to test out libary functionality. It is no longer usable or usd.
+
 import matplotlib.pyplot as plt
 import numpy as np
 from sympy.parsing.sympy_parser import parse_expr
