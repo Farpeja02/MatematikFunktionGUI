@@ -32,7 +32,7 @@ class listWindowClass:
 
         self.input = self.input.split('=')[1]
 
-        Label(self.listWindow, text="Liste over indbetalinger.. eller.. noget der ligner en cylinder").pack()
+        Label(self.listWindow, text="Her er din graf :)").pack()
 
 
         self.plot()
