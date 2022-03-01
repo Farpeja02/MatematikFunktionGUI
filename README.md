@@ -6,7 +6,7 @@ For at kunne køre dette program, skal du have installeret disse følgende pakke
 *sympy,*
 *numpy,*
 *matplotlib*
-
+*TKInter*
 
 Dette er det føste udkast af en GUI skitse.
 ![GUI Sketch](Images/GUIsketch%230.jpg)
