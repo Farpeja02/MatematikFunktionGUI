@@ -10,7 +10,7 @@ from tkinter.filedialog import asksaveasfile
 
 class MFWindowClass: #MFWindow is created when the run botton is pressed
     def __init__(self, master,input,limitA,limitB,interval,evalX):
-        self.master = master #reference til main window objektet
+        self.master = master #reference to main window.
         self.MFWindow = Toplevel(self.master.root)
         self.MFWindow.title("Graph of the given function")
         self.MFWindow.geometry("500x500")
@@ -80,7 +80,7 @@ class MFWindowClass: #MFWindow is created when the run botton is pressed
         # placing the toolbar on the Tkinter window
         canvas.get_tk_widget().pack()
 
-    #Evaluator is ignored if the user doesnt fill it in, if it isnt ignored, it uses the lambdify to run the user input throug the given function.
+    #Evaluator is ignored if the user doesnt fill it in, if it isnt ignored, it uses the lambdify to run the user input through the given function.
     def evaluator(self):
         if self.evalX != '':
             x  = int(self.evalX)

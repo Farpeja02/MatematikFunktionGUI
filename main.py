@@ -1,7 +1,5 @@
-# importing tkinter module
 from tkinter import *
 from tkinter.ttk import *
-#from SaveFile import Save
 from MFfile import MFWindowClass
 from tkinter import messagebox
 
@@ -12,7 +10,7 @@ class mainWindow: #This is the main window that opens when the program runs
         self.root = Tk()
         self.root.protocol('WM_DELETE_WINDOW',self.callback) #The 'WM_DELETE_WINDOW' tells the program to run callback when the main window is closed.
 
-        self.hasItBeenSaved = 1 #Variable to check if the program has been saved, starts at one so it doesnt trigger the messagebox before the user click run.
+        self.hasItBeenSaved = 1 #Variable to check if the program has been saved, starts at one so it doesnt trigger the messagebox before the user clicks run.
 
 
 
